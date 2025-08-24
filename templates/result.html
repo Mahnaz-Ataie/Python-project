@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+   <div class="container">
+        <h1>Your Score: {{ score }}/{{ total }}</h1>
+
+        <h2>Correct Answers:</h2>
+        <ol>
+    {% for q in quiz %}
+    <li>
+        {{ loop.index }}. {{ q.question }}<br>
+        <strong>Answer:</strong> {{ q.answer }}<br>
+        <strong>Your answer:</strong> {{ user_answers[loop.index0] }}
+        {% if user_answers[loop.index0] == q.answer %}
+            ✅
+        {% else %}
+            ❌
+        {% endif %}
+    </li>
+    {% endfor %}
+</ol>
+
+        <a href="{{ url_for('home') }}">Try Again</a>
+    </div>
+</body>
+</html>
+
